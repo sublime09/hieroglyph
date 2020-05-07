@@ -57,9 +57,11 @@ Second Level
     def test_trailing_content_removed(self, sphinx_app, status, warning):
         sphinx_app.build()
 
+        with open(sphinx_app.builddir/'slides'/'index.html') as f:
+            indexContents = f.read()
+
         self.assertFalse(
-            'TESTING_SENTINEL' in
-            open(sphinx_app.builddir/'slides'/'index.html').read(),
+            'TESTING_SENTINEL' in indexContents,
             'The sentinel paragraph should have been filtered.',
         )
 

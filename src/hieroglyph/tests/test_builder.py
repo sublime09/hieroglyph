@@ -75,8 +75,10 @@ class SlideBuilderTests(TestCase):
 
         sphinx_app.build()
 
-        built_styles = open(sphinx_app.builddir/'slides'/'_static'/'styles.css').read()
-        static_styles = open(sphinx_app.srcdir/'_static'/'styles.css').read()
+        with open(sphinx_app.builddir/'slides'/'_static'/'styles.css') as f:
+            built_styles = f.read()
+        with open(sphinx_app.srcdir/'_static'/'styles.css') as f:
+            static_styles = f.read()
 
         self.assertEqual(
             built_styles,
