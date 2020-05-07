@@ -31,7 +31,7 @@ Title
 """ % (self.builder.outdir,),
         )
 
-        self.image_node = self.document.traverse(nodes.image)[0]
+        self.image_node = list(self.document.traverse(nodes.image))[0]
         self.image_node.attributes['candidates'] = {
             '*': None,
         }

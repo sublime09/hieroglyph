@@ -439,7 +439,7 @@ Additional Text
         )
         self.assertIn(
             'extra-class',
-            self.document.traverse(nodes.section)[-1].get('classes'),
+            list(self.document.traverse(nodes.section))[-1].get('classes'),
         )
 
     def test_nested_title_markup(self):
@@ -452,6 +452,6 @@ Additional Text
         )
 
         self.assertEqual(
-            str(self.document.traverse(nodes.section)[1][0]),
+            str(list(self.document.traverse(nodes.section))[1][0]),
             '<title><strong>Title</strong></title>',
         )
