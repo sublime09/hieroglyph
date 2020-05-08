@@ -313,9 +313,10 @@ def filter_doctree_for_slides(doctree):
     while current < num_children:
 
         child = doctree.children[current]
-        child.replace_self(
-            child.traverse(no_autoslides_filter)
-        )
+        traversal = child.traverse(no_autoslides_filter)
+        if traversal == []:
+            traversal = [nodes.target()]
+        child.replace_self(traversal)
 
         if len(doctree.children) == num_children:
             # nothing removed, increment current
